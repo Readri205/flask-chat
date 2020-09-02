@@ -6,3 +6,4 @@ This is a chat application written in Flask. The purpose of this
 # Version Control
 
 - V1.0 Initial Commit
+- V1.1 Add run.py file
