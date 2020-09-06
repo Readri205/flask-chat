@@ -12,3 +12,4 @@ This is a chat application written in Flask. The purpose of this
 - V1.4 Add session variable to app
 - V1.5 Add chat function with timer
 - V1.6 Add new chat and ru.py file
+_ V1.7 Add Procfile
