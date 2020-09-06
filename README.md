@@ -7,3 +7,4 @@ This is a chat application written in Flask. The purpose of this
 
 - V1.0 Initial Commit
 - V1.1 Add run.py file
+- V1.2 Add ability to add to and read from a list and display the messages to the user
