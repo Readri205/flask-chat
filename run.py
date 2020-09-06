@@ -4,12 +4,12 @@ from flask import Flask, redirect, render_template, request, session, url_for
 
 
 app = Flask(__name__)
-app.secret_key = "randomstring123"
+app.secret_key = os.getenv("SECRET", "randomstring123")
 messages = []
 
 
 def add_message(username, message):
-    """Add message to the `messages` list"""
+    """Add messages to the `messages` list"""
     now = datetime.now().strftime("%H:%M:%S")
     messages.append({"timestamp": now, "from": username, "message": message})
 
@@ -26,17 +26,19 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/chat/<username>", methods = ["GET", "POST"])
+@app.route("/chat/<username>", methods=["GET", "POST"])
 def user(username):
     """Add and display chat messages"""
-
     if request.method == "POST":
         username = session["username"]
         message = request.form["message"]
         add_message(username, message)
         return redirect(url_for("user", username=session["username"]))
 
-    return render_template("chat.html", username = username, chat_messages = messages)
+    return render_template("chat.html", username=username,
+                           chat_messages=messages)
 
 
-app.run(host=os.getenv("IP"), port=int(os.getenv("PORT")), debug=True)
+app.run(host=os.getenv("IP", "0.0.0.0"),
+        port=int(os.getenv("PORT", "5000")), debug=False)
+        
